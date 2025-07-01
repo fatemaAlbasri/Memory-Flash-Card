@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+main {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+}
+section {
+  display: flex;
+  justify-content: center;
+}

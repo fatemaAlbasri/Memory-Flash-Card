@@ -11,6 +11,11 @@ const images = [
 ]
 let assignedImages = []
 
+// timer
+let startTimer
+let seconds = 0
+let min = 0
+
 // Cached elements references
 const startBtm = document.querySelector('.start')
 const cards = document.querySelectorAll('.cardsBtn')
@@ -29,10 +34,19 @@ const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5)
 }
 
+//Timer count
+const myTimer = () => {
+  if (seconds >= 60) {
+    min++
+    seconds = 0
+  }
+  timer.innerHTML = `${min}:${seconds}`
+  seconds++
+}
+
 // Start Game
 const startGame = () => {
   start = true
-
   console.log('Game starting')
 
   const imagePairs = [...images, ...images]
@@ -55,6 +69,8 @@ const startGame = () => {
       if (img) img.remove()
     })
     console.log('Cards flipped back.')
+
+    startTimer = setInterval(myTimer, 1000)
   }, 5000)
 }
 
@@ -110,12 +126,17 @@ const home = () => {
 }
 
 const restart = () => {
+  clearInterval(startTimer)
+  seconds = 0
+  min = 0
+  timer.innerHTML = '0:0'
   start = false
-  console.log('Clicked restart button')
   cards.forEach((card) => {
     const img = card.querySelector('img')
     if (img) img.remove()
   })
+
+  console.log('Clicked restart button')
 }
 
 // Event Listeners

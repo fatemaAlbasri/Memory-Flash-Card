@@ -6,7 +6,16 @@ main {
   display: grid;
   grid-template-rows: 1fr 2fr;
 }
-section {
+h1 {
   display: flex;
   justify-content: center;
+}
+.gridLevel {
+  display: flex;
+  justify-content: space-around;
+}
+
+.levelBtn {
+  height: 70px;
+  width: 50px;
 }

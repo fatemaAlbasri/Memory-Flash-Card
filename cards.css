@@ -7,7 +7,6 @@ main {
   margin: 10px;
 
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 2fr 1fr;
 }
 
 h1 {
@@ -40,9 +39,16 @@ h1 {
 .gridCard {
   margin: 10px;
 
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.cards {
   display: flex;
   justify-content: center;
-  align-items: center;
+
+  margin: 5px;
 }
 
 .cardsBtn {

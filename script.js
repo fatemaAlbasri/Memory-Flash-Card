@@ -7,9 +7,7 @@ const images = [
   'images/card1.png',
   'images/card2.png',
   'images/card3.png',
-  'images/card4.png',
-  'images/card5.png',
-  'images/card6.png'
+  'images/card4.png'
 ]
 let assignedImages = []
 
@@ -28,7 +26,7 @@ const score = document.querySelector('.score')
 
 // Shuffling images
 const shuffleArray = (array) => {
-  return array.sort(() => Math.random())
+  return array.sort(() => Math.random() - 0.5)
 }
 
 // Start Game
@@ -120,7 +118,6 @@ const restart = () => {
   })
 }
 
-////////////////////////////////
 // Event Listeners
 
 cards.forEach((card) => {

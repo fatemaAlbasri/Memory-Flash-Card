@@ -105,6 +105,7 @@ const selectCard = (event) => {
 
 // checked matching cards
 let isMatched = false
+let matchedCards = []
 
 const checkMatched = () => {
   console.log('in checked')
@@ -113,15 +114,25 @@ const checkMatched = () => {
 
   if (firstCard.image === secondCard.image) {
     console.log('Matched cards')
+    matchedCards.push(firstCard.card, secondCard.card)
+    console.log(matchedCards)
+
     flippedCards = []
     isMatched = false
   } else {
     setTimeout(() => {
-      cards.forEach((card) => {
-        const img = card.querySelector('img')
-        if (img) img.remove()
+      flippedCards.forEach(({ card }) => {
+        if (!matchedCards.includes(card)) {
+          const img = card.querySelector('img')
+          console.log(img)
+          if (img) {
+            img.remove()
+          }
+        }
       })
       console.log('Not matched cards')
+      console.log('matched cards' + matchedCards.length)
+
       flippedCards = []
       isMatched = false
     }, 1000)

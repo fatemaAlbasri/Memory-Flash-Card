@@ -12,6 +12,7 @@ let assignedImages = []
 
 // timer
 let startTimer
+let spendTime
 let seconds = 0
 let min = 0
 
@@ -22,12 +23,14 @@ const homeBtm = document.querySelector('.home')
 const hintBtm = document.querySelector('.hint')
 const restartBtm = document.querySelector('.restartBtn')
 
+const levelEnd = document.querySelector('.levelEnd')
+
 const timer = document.querySelector('.timer')
 const score = document.querySelector('.score')
 
 /* ------------------------------ Functions ------------------------------*/
 
-// Shuffling images
+// Shuffling array of images https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
 const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5)
 }
@@ -38,7 +41,7 @@ const myTimer = () => {
     min++
     seconds = 0
   }
-  timer.innerHTML = `${min}:${seconds}`
+  spendTime = timer.innerHTML = `${min}:${seconds}`
   seconds++
 }
 
@@ -106,7 +109,7 @@ const selectCard = (event) => {
 // checked matching cards
 let isMatched = false
 let matchedCards = []
-
+let scoreCount = 0
 const checkMatched = () => {
   console.log('in checked')
   isMatched = true
@@ -137,6 +140,7 @@ const checkMatched = () => {
       isMatched = false
     }, 1000)
   }
+  if (matchedCards.length === cards.length) endGame()
 }
 //hint button
 const hint = () => {
@@ -177,11 +181,14 @@ const home = () => {
 
 const restart = () => {
   clearInterval(startTimer)
+  div.remove()
   seconds = 0
   min = 0
   timer.innerHTML = '0:0'
   flippedCards = []
   start = false
+  levelEnd.style.opacity = 1
+
   cards.forEach((card) => {
     const img = card.querySelector('img')
     if (img) img.remove()
@@ -189,7 +196,29 @@ const restart = () => {
 
   console.log('Clicked restart button')
 }
+const div = document.createElement('div')
 
+const endGame = () => {
+  clearInterval(startTimer)
+
+  levelEnd.style.opacity = 1
+  const endText = document.createElement('h1')
+  const endTimer = document.createElement('h2')
+  const endScore = document.createElement('h2')
+  const button = document.createElement('button')
+
+  endText.innerHTML = 'Level Completed'
+  endTimer.innerHTML = `Spend time: ${min}:${seconds}`
+  endScore.innerHTML = `Score: 0`
+  button.innerHTML = 'Next Level'
+
+  div.appendChild(endText)
+  div.appendChild(endTimer)
+  div.appendChild(endScore)
+  div.appendChild(button)
+
+  levelEnd.appendChild(div)
+}
 // Event Listeners
 
 cards.forEach((card) => {

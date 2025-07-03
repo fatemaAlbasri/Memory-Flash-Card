@@ -66,3 +66,15 @@ h1 {
   height: 50px;
   width: 70px;
 }
+
+.levelEnd {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: rgb(135, 0, 0);
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  z-index: 10;
+  opacity: 0;
+}

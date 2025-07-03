@@ -143,8 +143,8 @@ const hint = () => {
   if (!start) return console.log('can not clicked hint button')
 
   cards.forEach((card) => {
-    if (!card.querySelector('img')) {
-      const image = card.getAttribute('src')
+    if (!card.querySelector('img') && !matchedCards.includes(card)) {
+      const image = card.getAttribute('data')
       if (image) {
         const img = document.createElement('img')
         img.setAttribute('src', image)
@@ -159,8 +159,13 @@ const hint = () => {
 
   setTimeout(() => {
     cards.forEach((card) => {
-      const img = card.querySelector('img')
-      if (img) img.remove()
+      if (!matchedCards.includes(card)) {
+        const img = card.querySelector('img')
+        console.log(img)
+        if (img) {
+          img.remove()
+        }
+      }
     })
   }, 2000)
 }

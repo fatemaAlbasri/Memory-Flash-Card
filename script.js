@@ -13,7 +13,6 @@ let flippedCards = []
 
 // timer
 let startTimer
-let spendTime
 let seconds = 0
 let min = 0
 let setTime
@@ -25,7 +24,7 @@ let scoreCount = 0
 
 /* --------------------- Cached elements references ---------------------*/
 const startBtm = document.querySelector('.start')
-const cards = document.querySelectorAll('.cardsBtn')
+const cardsBtn = document.querySelectorAll('.cardsBtn')
 const homeBtm = document.querySelector('.home')
 const hintBtm = document.querySelector('.hint')
 const restartBtm = document.querySelector('.restartBtn')
@@ -48,7 +47,7 @@ const myTimer = () => {
     min++
     seconds = 0
   }
-  spendTime = timer.innerHTML = `${min}:${seconds}`
+  timer.innerHTML = `${min}:${seconds}`
   seconds++
 }
 
@@ -60,20 +59,22 @@ const startGame = () => {
   const imagePairs = [...images, ...images]
   assignedImages = shuffleArray(imagePairs)
 
-  cards.forEach((card, index) => {
+  //adding images on buttons
+  cardsBtn.forEach((card, index) => {
     const img = document.createElement('img')
     img.setAttribute('src', assignedImages[index])
     img.style.width = '60px'
     img.style.height = '70px'
     card.appendChild(img)
 
-    // adding the image data (attribute) in button to help when fliping cards
+    // adding the data (attribute) on button to help when fliping cards
     card.setAttribute('data', assignedImages[index])
+    console.log(card)
   })
 
-  // Hide all cards after 5 seconds
+  // Hide all images after 5 seconds
   setTimeout(() => {
-    cards.forEach((card) => {
+    cardsBtn.forEach((card) => {
       const img = card.querySelector('img')
       if (img) img.remove()
     })
@@ -86,9 +87,12 @@ const startGame = () => {
 const selectCard = (event) => {
   const card = event.currentTarget
 
-  if (flippedCards.includes(card) || flippedCards.length >= 2) return
-
-  if (card.querySelector('img')) return
+  if (
+    flippedCards.includes(card) ||
+    flippedCards.length >= 2 ||
+    card.querySelector('img')
+  )
+    return
 
   const assignedImage = card.getAttribute('data')
   if (!assignedImage) return
@@ -110,11 +114,13 @@ const selectCard = (event) => {
   }
 }
 
+// checking matched cards
 const checkMatched = () => {
   console.log('in checked')
   isMatched = true
   const [firstCard, secondCard] = flippedCards
 
+  //checkd if cards that clicked are equal or not
   if (firstCard.image === secondCard.image) {
     console.log('Matched cards')
     matchedCards.push(firstCard.card, secondCard.card)
@@ -141,13 +147,13 @@ const checkMatched = () => {
       isMatched = false
     }, 1000)
   }
-  if (matchedCards.length === cards.length) endGame()
+  if (matchedCards.length === cardsBtn.length) endGame()
 }
 //hint button
 const hint = () => {
   if (!start) return console.log('can not clicked hint button')
 
-  cards.forEach((card) => {
+  cardsBtn.forEach((card) => {
     if (!card.querySelector('img') && !matchedCards.includes(card)) {
       const image = card.getAttribute('data')
       if (image) {
@@ -163,7 +169,7 @@ const hint = () => {
   console.log('Clicked hint button')
 
   setTimeout(() => {
-    cards.forEach((card) => {
+    cardsBtn.forEach((card) => {
       if (!matchedCards.includes(card)) {
         const img = card.querySelector('img')
         console.log(img)
@@ -195,7 +201,7 @@ const restart = () => {
   timer.innerHTML = '0:0'
   score.innerHTML = '0'
 
-  cards.forEach((card) => {
+  cardsBtn.forEach((card) => {
     const img = card.querySelector('img')
     if (img) img.remove()
 
@@ -206,6 +212,7 @@ const restart = () => {
   div.innerHTML = ''
 }
 
+// div to contains end game info
 const div = document.createElement('div')
 
 const endGame = () => {
@@ -241,7 +248,7 @@ const endGame = () => {
 
 // Event Listeners
 
-cards.forEach((card) => {
+cardsBtn.forEach((card) => {
   card.addEventListener('click', selectCard)
 })
 homeBtm.addEventListener('click', home)

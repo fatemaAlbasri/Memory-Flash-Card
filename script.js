@@ -9,6 +9,7 @@ const images = [
   'images/card4.png'
 ]
 let assignedImages = []
+let flippedCards = []
 
 // timer
 let startTimer
@@ -16,6 +17,11 @@ let spendTime
 let seconds = 0
 let min = 0
 let setTime
+
+// checked matching cards and score
+let isMatched = false
+let matchedCards = []
+let scoreCount = 0
 
 /* --------------------- Cached elements references ---------------------*/
 const startBtm = document.querySelector('.start')
@@ -76,8 +82,6 @@ const startGame = () => {
   }, 5000)
 }
 
-let flippedCards = []
-
 // Select Card
 const selectCard = (event) => {
   const card = event.currentTarget
@@ -106,10 +110,6 @@ const selectCard = (event) => {
   }
 }
 
-// checked matching cards
-let isMatched = false
-let matchedCards = []
-let scoreCount = 0
 const checkMatched = () => {
   console.log('in checked')
   isMatched = true
@@ -233,6 +233,10 @@ const endGame = () => {
   div.appendChild(button)
 
   levelEnd.appendChild(div)
+
+  button.addEventListener('click', () => {
+    window.location.href = ''
+  })
 }
 
 // Event Listeners

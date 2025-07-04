@@ -15,6 +15,7 @@ let startTimer
 let spendTime
 let seconds = 0
 let min = 0
+let setTime
 
 /* --------------------- Cached elements references ---------------------*/
 const startBtm = document.querySelector('.start')
@@ -71,7 +72,6 @@ const startGame = () => {
       if (img) img.remove()
     })
     console.log('Cards flipped back.')
-
     startTimer = setInterval(myTimer, 1000)
   }, 5000)
 }
@@ -119,7 +119,8 @@ const checkMatched = () => {
     console.log('Matched cards')
     matchedCards.push(firstCard.card, secondCard.card)
     console.log(matchedCards)
-
+    scoreCount += 2
+    score.innerHTML = `${scoreCount}`
     flippedCards = []
     isMatched = false
   } else {
@@ -180,22 +181,31 @@ const home = () => {
 }
 
 const restart = () => {
+  console.log('Clicked restart button')
+
   clearInterval(startTimer)
-  div.remove()
+
+  start = false
+  flippedCards = []
+  matchedCards = []
+  assignedImages = []
+  scoreCount = 0
   seconds = 0
   min = 0
   timer.innerHTML = '0:0'
-  flippedCards = []
-  start = false
-  levelEnd.style.opacity = 1
+  score.innerHTML = '0'
 
   cards.forEach((card) => {
     const img = card.querySelector('img')
     if (img) img.remove()
+
+    card.removeAttribute('data')
   })
 
-  console.log('Clicked restart button')
+  levelEnd.style.opacity = 0
+  div.innerHTML = ''
 }
+
 const div = document.createElement('div')
 
 const endGame = () => {
@@ -207,9 +217,14 @@ const endGame = () => {
   const endScore = document.createElement('h2')
   const button = document.createElement('button')
 
+  setTime = seconds + min * 60
+  if (setTime <= 10) scoreCount += 20
+  else if (setTime > 10 && setTime <= 20) scoreCount += 10
+  else scoreCount += 5
+
   endText.innerHTML = 'Level Completed'
   endTimer.innerHTML = `Spend time: ${min}:${seconds}`
-  endScore.innerHTML = `Score: 0`
+  endScore.innerHTML = `Score: ${scoreCount}`
   button.innerHTML = 'Next Level'
 
   div.appendChild(endText)
@@ -219,6 +234,7 @@ const endGame = () => {
 
   levelEnd.appendChild(div)
 }
+
 // Event Listeners
 
 cards.forEach((card) => {

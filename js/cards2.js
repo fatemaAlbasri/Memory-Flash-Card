@@ -6,7 +6,8 @@ const images = [
   '../images/card1.png',
   '../images/card2.png',
   '../images/card3.png',
-  '../images/card4.png'
+  '../images/card4.png',
+  '../images/card5.png'
 ]
 let assignedImages = []
 let flippedCards = []

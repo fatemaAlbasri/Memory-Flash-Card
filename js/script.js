@@ -3,10 +3,10 @@ console.log('Connected Successfully')
 /* -------------------------- Global Variables ---------------------------*/
 let start = false
 const images = [
-  'images/card1.png',
-  'images/card2.png',
-  'images/card3.png',
-  'images/card4.png'
+  '../images/card1.png',
+  '../images/card2.png',
+  '../images/card3.png',
+  '../images/card4.png'
 ]
 let assignedImages = []
 let flippedCards = []
@@ -183,7 +183,7 @@ const hint = () => {
 
 const home = () => {
   console.log('Clicked home button')
-  window.location.href = 'levels.html'
+  window.location.href = '../html/levels.html'
 }
 
 const restart = () => {

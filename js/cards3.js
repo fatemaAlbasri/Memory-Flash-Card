@@ -234,7 +234,7 @@ const endGame = () => {
   endText.innerHTML = 'Level Completed'
   endTimer.innerHTML = `Spend time: ${min}:${seconds}`
   endScore.innerHTML = `Score: ${scoreCount}`
-  button.innerHTML = 'Next Level'
+  button.innerHTML = 'End Game'
 
   div.appendChild(endText)
   div.appendChild(endTimer)
@@ -243,9 +243,8 @@ const endGame = () => {
 
   levelEnd.appendChild(div)
 
-  levelTwo.disabled = false
   button.addEventListener('click', () => {
-    window.location.href = '../index.html'
+    window.location.href = '../html/levels.html'
   })
 }
 

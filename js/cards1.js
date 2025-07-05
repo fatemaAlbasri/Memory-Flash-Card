@@ -241,9 +241,8 @@ const endGame = () => {
 
   levelEnd.appendChild(div)
 
-  levelTwo.disabled = false
   button.addEventListener('click', () => {
-    window.location.href = '../index.html'
+    window.location.href = '../html/cards2.html'
   })
 }
 

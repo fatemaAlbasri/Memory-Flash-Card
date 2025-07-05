@@ -34,6 +34,12 @@ const levelEnd = document.querySelector('.levelEnd')
 const timer = document.querySelector('.timer')
 const score = document.querySelector('.score')
 
+//levels
+
+const levelOne = document.querySelector('#levelOne')
+const levelTwo = document.querySelector('#levelTwo')
+const levelThree = document.querySelector('#levelThree')
+
 /* ------------------------------ Functions ------------------------------*/
 
 // Shuffling array of images https://www.geeksforgeeks.org/how-to-shuffle-an-array-using-javascript/
@@ -241,8 +247,9 @@ const endGame = () => {
 
   levelEnd.appendChild(div)
 
+  levelTwo.disabled = false
   button.addEventListener('click', () => {
-    window.location.href = ''
+    window.location.href = '../index.html'
   })
 }
 
@@ -251,6 +258,7 @@ const endGame = () => {
 cardsBtn.forEach((card) => {
   card.addEventListener('click', selectCard)
 })
+
 homeBtm.addEventListener('click', home)
 startBtm.addEventListener('click', startGame)
 restartBtm.addEventListener('click', restart)

@@ -11,13 +11,13 @@ const images = [
 let assignedImages = []
 let flippedCards = []
 
-// timer
+// Timer
 let startTimer
 let seconds = 0
 let min = 0
 let setTime
 
-// checked matching cards and score
+// Checked matching cards and score
 let isMatched = false
 let matchedCards = []
 let scoreCount = 0
@@ -51,7 +51,7 @@ const myTimer = () => {
   seconds++
 }
 
-// Start Game
+// Start game
 const startGame = () => {
   start = true
   console.log('Game starting')
@@ -59,7 +59,7 @@ const startGame = () => {
   const imagePairs = [...images, ...images]
   assignedImages = shuffleArray(imagePairs)
 
-  //adding images on buttons
+  // Adding images on buttons
   cardsBtn.forEach((card, index) => {
     const img = document.createElement('img')
     img.setAttribute('src', assignedImages[index])
@@ -67,7 +67,7 @@ const startGame = () => {
     img.style.height = '70px'
     card.appendChild(img)
 
-    // adding the data (attribute) on button to help when fliping cards
+    // Adding the data (attribute) on button to help when fliping cards
     card.setAttribute('data', assignedImages[index])
     console.log(card)
   })
@@ -85,6 +85,7 @@ const startGame = () => {
 
 // Select Card
 const selectCard = (event) => {
+  // current selected card
   const card = event.currentTarget
 
   if (
@@ -114,13 +115,13 @@ const selectCard = (event) => {
   }
 }
 
-// checking matched cards
+// Checking matched cards
 const checkMatched = () => {
   console.log('in checked')
   isMatched = true
   const [firstCard, secondCard] = flippedCards
 
-  //checkd if cards that clicked are equal or not
+  // Checkd if cards that clicked are equal or not
   if (firstCard.image === secondCard.image) {
     console.log('Matched cards')
     matchedCards.push(firstCard.card, secondCard.card)
@@ -149,7 +150,51 @@ const checkMatched = () => {
   }
   if (matchedCards.length === cardsBtn.length) endGame()
 }
-//hint button
+
+// div to contains end game info
+const div = document.createElement('div')
+
+// End game
+const endGame = () => {
+  clearInterval(startTimer)
+
+  levelEnd.style.opacity = 1
+  const endText = document.createElement('h1')
+  const endTimer = document.createElement('h2')
+  const endScore = document.createElement('h2')
+  const button = document.createElement('button')
+
+  // Set score
+  setTime = seconds + min * 60
+  if (setTime <= 10) scoreCount += 20
+  else if (setTime > 10 && setTime <= 20) scoreCount += 10
+  else scoreCount += 5
+
+  endText.innerHTML = 'Level Completed'
+  endTimer.innerHTML = `Spend time: ${min}:${seconds}`
+  endScore.innerHTML = `Score: ${scoreCount}`
+  button.innerHTML = 'Next Level'
+
+  div.appendChild(endText)
+  div.appendChild(endTimer)
+  div.appendChild(endScore)
+  div.appendChild(button)
+
+  levelEnd.appendChild(div)
+
+  // unlocked next level
+  let unlockedLevel = parseInt(sessionStorage.getItem('unlockedLevel')) || 1
+  let currentLevel = parseInt(sessionStorage.getItem('currentLevel'))
+
+  if (currentLevel === unlockedLevel && currentLevel < 3) {
+    sessionStorage.setItem('unlockedLevel', unlockedLevel + 1)
+  }
+  button.addEventListener('click', () => {
+    window.location.href = '../html/cards2.html'
+  })
+}
+
+// Hint button
 const hint = () => {
   if (!start) return console.log('can not clicked hint button')
 
@@ -181,11 +226,13 @@ const hint = () => {
   }, 2000)
 }
 
+// Home button
 const home = () => {
   console.log('Clicked home button')
   window.location.href = '../html/levels.html'
 }
 
+// Restart button
 const restart = () => {
   console.log('Clicked restart button')
 
@@ -212,41 +259,7 @@ const restart = () => {
   div.innerHTML = ''
 }
 
-// div to contains end game info
-const div = document.createElement('div')
-
-const endGame = () => {
-  clearInterval(startTimer)
-
-  levelEnd.style.opacity = 1
-  const endText = document.createElement('h1')
-  const endTimer = document.createElement('h2')
-  const endScore = document.createElement('h2')
-  const button = document.createElement('button')
-
-  setTime = seconds + min * 60
-  if (setTime <= 10) scoreCount += 20
-  else if (setTime > 10 && setTime <= 20) scoreCount += 10
-  else scoreCount += 5
-
-  endText.innerHTML = 'Level Completed'
-  endTimer.innerHTML = `Spend time: ${min}:${seconds}`
-  endScore.innerHTML = `Score: ${scoreCount}`
-  button.innerHTML = 'Next Level'
-
-  div.appendChild(endText)
-  div.appendChild(endTimer)
-  div.appendChild(endScore)
-  div.appendChild(button)
-
-  levelEnd.appendChild(div)
-
-  button.addEventListener('click', () => {
-    window.location.href = '../html/cards2.html'
-  })
-}
-
-// Event Listeners
+/* -------------------------- Event Listeners ----------------------*/
 
 cardsBtn.forEach((card) => {
   card.addEventListener('click', selectCard)

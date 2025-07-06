@@ -1,21 +1,26 @@
-/* --------------------- Cached elements references ---------------------*/
-const levelOneBtn = document.querySelector('#levelOne')
-const levelTwoBtn = document.querySelector('#levelTwo')
-const levelThreeBtn = document.querySelector('#levelThree')
+/* -------------------------- Global Variables ---------------------------*/
+const totalLevels = 3
 
 /* ------------------------------ Functions ------------------------------*/
-const levelOne = () => {
-  window.location.href = '../html/cards1.html'
-}
-const levelTwo = () => {
-  window.location.href = '../html/cards2.html'
-}
-const levelThree = () => {
-  window.location.href = '../html/cards3.html'
+
+const updateLevels = () => {
+  let unlockedLevel = parseInt(sessionStorage.getItem('unlockedLevel')) || 1
+
+  for (let i = 1; i <= totalLevels; i++) {
+    const levelBtn = document.getElementById(`level${i}`)
+    if (!levelBtn) continue
+    if (i <= unlockedLevel) {
+      levelBtn.removeAttribute('disabled')
+      levelBtn.addEventListener('click', () => {
+        sessionStorage.setItem('currentLevel', i)
+        window.location.href = `cards${i}.html`
+      })
+    } else {
+      levelBtn.setAttribute('disabled', true)
+    }
+  }
 }
 
-/* ---------------------------- Event Listeners ---------------------------*/
+/* -------------------------- Event Listeners ----------------------*/
 
-levelOneBtn.addEventListener('click', levelOne)
-levelTwoBtn.addEventListener('click', levelTwo)
-levelThreeBtn.addEventListener('click', levelThree)
+document.addEventListener('DOMContentLoaded', updateLevels)

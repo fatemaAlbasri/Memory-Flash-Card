@@ -1,14 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background-image: url('../images/background1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
 main {
+  height: 100vh;
+
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 0.75fr 1fr;
+  gap: 20px;
 }
 h1 {
+  font-size: 50px;
+  color: #f2f2f2;
+  text-shadow: 5px 5px 10px #000000;
+
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .gridLevel {
   display: flex;
@@ -16,6 +32,29 @@ h1 {
 }
 
 .levelBtn {
-  height: 70px;
-  width: 50px;
+  height: 250px;
+  width: 200px;
+  font-size: 50px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-image: url(../images/levels1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #222;
+  text-align: center;
+}
+
+.levelBtn:hover:not(:disabled) {
+  box-shadow: 0 0 20px #874ccc;
+  color: #65349c;
+}
+.levelBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

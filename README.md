@@ -84,13 +84,19 @@ To play the game: [Memory flash card](https://memoryflashcard.surge.sh/)
   Display levels page
 
 <--Levels Page-->
-  Set all levels to locked except level 1
+  Set totalLevels = 3
 
-  When player clicked on level
-    if (the previous level is completed)
-      Navigate to the corresponding Card page
+On page load:
+  Get unlockedLevel from sessionStorage by default 1
+
+  for level 1 to totalLevels
+    if level <= unlockedLevel
+      Enable button
+      Set currentLevel in sessionStorage
+      Go to cards{level}.html
     else
-      Level is locked
+      Keep button disabled
+
 
 <--Card Page-->
   When game start:
@@ -102,7 +108,6 @@ To play the game: [Memory flash card](https://memoryflashcard.surge.sh/)
     Flip all cards face-down
     Start timer
 
-  // number must change every level
   Set matched cards = []
   // score updated every end level
   Set scoreCount = 0
@@ -123,6 +128,7 @@ To play the game: [Memory flash card](https://memoryflashcard.surge.sh/)
         else
           Flip them back (remove images)
           Clear flippedCards array
+
       if (all cards matched)
         End Game (call endgame())
 

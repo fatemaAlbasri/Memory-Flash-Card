@@ -1,5 +1,3 @@
-console.log('Connected Successfully')
-
 /* -------------------------- Global Variables ---------------------------*/
 let start = false
 const images = [
@@ -55,7 +53,6 @@ const myTimer = () => {
 // Start game
 const startGame = () => {
   start = true
-  console.log('Game starting')
 
   const imagePairs = [...images, ...images]
   assignedImages = shuffleArray(imagePairs)
@@ -71,7 +68,6 @@ const startGame = () => {
 
     // Adding the data (attribute) on button to help when fliping cards
     card.setAttribute('data', assignedImages[index])
-    console.log(card)
   })
 
   // Hide all images after 5 seconds
@@ -80,7 +76,6 @@ const startGame = () => {
       const img = card.querySelector('img')
       if (img) img.remove()
     })
-    console.log('Cards flipped back.')
     startTimer = setInterval(myTimer, 1000)
   }, 5000)
 }
@@ -109,25 +104,19 @@ const selectCard = (event) => {
 
   flippedCards.push({ card, image: assignedImage })
 
-  console.log('Clicked card, image:', assignedImage)
-
   if (flippedCards.length === 2) {
-    console.log('go to checked function')
     checkMatched()
   }
 }
 
 // Checking matched cards
 const checkMatched = () => {
-  console.log('in checked')
   isMatched = true
   const [firstCard, secondCard] = flippedCards
 
   //Checkd if cards that clicked are equal or not
   if (firstCard.image === secondCard.image) {
-    console.log('Matched cards')
     matchedCards.push(firstCard.card, secondCard.card)
-    console.log(matchedCards)
     scoreCount += 2
     score.innerHTML = `${scoreCount}`
     flippedCards = []
@@ -137,14 +126,11 @@ const checkMatched = () => {
       flippedCards.forEach(({ card }) => {
         if (!matchedCards.includes(card)) {
           const img = card.querySelector('img')
-          console.log(img)
           if (img) {
             img.remove()
           }
         }
       })
-      console.log('Not matched cards')
-      console.log('matched cards' + matchedCards.length)
 
       flippedCards = []
       isMatched = false
@@ -208,8 +194,6 @@ const endGame = () => {
 
 // Hint button
 const hint = () => {
-  if (!start) return console.log('can not clicked hint button')
-
   cardsBtn.forEach((card) => {
     if (!card.querySelector('img') && !matchedCards.includes(card)) {
       const image = card.getAttribute('data')
@@ -225,13 +209,10 @@ const hint = () => {
     }
   })
 
-  console.log('Clicked hint button')
-
   setTimeout(() => {
     cardsBtn.forEach((card) => {
       if (!matchedCards.includes(card)) {
         const img = card.querySelector('img')
-        console.log(img)
         if (img) {
           img.remove()
         }
@@ -242,14 +223,11 @@ const hint = () => {
 
 // Home button
 const home = () => {
-  console.log('Clicked home button')
   window.location.href = '../html/levels.html'
 }
 
 // Restart button
 const restart = () => {
-  console.log('Clicked restart button')
-
   clearInterval(startTimer)
 
   start = false

@@ -86,80 +86,97 @@ Memory flash card game. The game displays a grid of face-down card, each card hi
 
   When player clicked on level
     if (the previous level is completed)
-      Display card page for the selected level
+      Navigate to the corresponding Card page
     else
-      the player can't play this level until passing the previous level
+      Level is locked
 
 <--Card Page-->
   When game start:
+    Set start = true to indicate game is active
+    Duplicate and shuffle image array to create matching pairs
+    Assign each image to a card button
     Show all cards face-up
     Wait 5 seconds
     Flip all cards face-down
     Start timer
 
   // number must change every level
-  Set number of cards for the level = (e.g., 6, 8, 10, etc.)
-  Set matched cards = 0
+  Set matched cards = []
   // score updated every end level
-  Set score = 0
+  Set scoreCount = 0
 
-  while (number of cards != 0 )
-    Wait until the player clicked on first card
-      if(the card already flip face-up)
-        click again into another card
+    Wait until the player clicked on card
+      if(the card already flip face-up || has an image)
+        return
       else
-        flip the first card face-up
+        Flip the card and display the image.
+        Push it to flippedCards array
 
-    Wait until the player clicked on second card
-      if(the card already flip face-up)
-        click again into another card
-      else
-        flip the second card face-up
+      if (select two cards)
+        if(matched)
+          Add both cards to matchedCards.
+          Increment scoreCount by 2.
+          Clear flippedCards array
 
-    if (first card and second card are not matched)
-      flip first and second card face-down
-      return
-    else
-      make first and second card face-up
-      number of cards -=2
-      matched cardes +=2
-
-  // level complete
-    if ( all cards are matched )
-        Stop timer
-        unlock next level
-
-        if( spend time <= 10 seconds )
-          score += 20
-        else if ( spend time > 10 and spend time <= 20)
-          score += 10
         else
-          score += 5
+          Flip them back (remove images)
+          Clear flippedCards array
+      if (all cards matched)
+        End Game (call endgame())
 
-        // adding the level number to the score and number of matched cards
-        score = score + number of level + matched card
+        endGame()
+          Stop timer
 
-        Display level completed , spend time , score
+          if( time <= 10 seconds )
+            scoreCount += 20
+          else if ( time > 10 and time <= 20)
+            scoreCount += 10
+          else
+            scoreCount += 5
 
-        if(there is no next level)
-          Display levels end , levels page
-        else
-          Display next level
+          Display level completed , time , score, button to next level
+
+          Unlock the next level in sessionStorage if not already unlocked
+
+          Show "Next Level" button (navigates to next card.html)
 
   // buttons
-    if (player clicked on restart button)
-      Reset the game level
+    // restart
+      Clears all game state: timer, score, matched cards, flipped cards.
+      Resets all card images and data attributes.
+      Remove the end game board
 
-    if (player clicked on home button)
-      return to the level page
+    // home
+      Navigates to Levels page levels.html
 
-    if (player clicked on hint button)
-      flip all cards face-up for 3 seconds
-      Flip the cards that already not matched face-down
+    // hint
+      Flips all unmatched cards face-up for 2 seconds
+      Then hides unmatched cards again
+
 ```
 
 ---
 
 ### **_Credits_**
 
-#### Colors : [color hunt](https://colorhunt.co/)
+### CSS
+
+#### Colors : [Color hunt](https://colorhunt.co/)
+
+#### Fonts : [Google Fonts](https://fonts.google.com/selection/embed)
+
+#### Images : [pinterest](https://www.pinterest.com/) , [Canva](https://www.canva.com/design/DAGr3a-n0RI/ezC4qoxMflG4-4OBfFLQLw/edit) , [freepik](https://www.freepik.com/free-vector/cartoon-galaxy-background_14663513.htm?query=gal%C3%A1xia&epik=dj0yJnU9NkgtR3FwOHZiZzNkNFdoUDlVOVB3WHotQTdNSkhTUXUmcD0wJm49c2lITXE3cnZKem5MRDZuTjh0MnRldyZ0PUFBQUFBR2hxZmpZ)
+
+### JavaScript'DOMContentLoaded'
+
+#### Shuffle an Array : [GeeksforGeeks](https://www.geeksforgeeks.org/javascript/how-to-shuffle-an-array-using-javascript/)
+
+#### Timer : [w3schools](https://www.w3schools.com/js/js_timing.asp)
+
+#### HTML attribute : [w3schools](https://www.w3schools.com/tags/ref_attributes.asp)
+
+#### removeAttribute property : [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Element/removeAttribute)
+
+#### sessionStorage property : [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
+
+#### DOMContentLoaded event : [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event)

@@ -25,9 +25,9 @@ let matchedCards = []
 let scoreCount = 0
 
 /* --------------------- Cached elements references ---------------------*/
-const startBtm = document.querySelector('.start')
+const startBtm = document.querySelector('.startBtn')
 const cardsBtn = document.querySelectorAll('.cardsBtn')
-const homeBtm = document.querySelector('.home')
+const homeBtm = document.querySelector('.homeBtn')
 const hintBtm = document.querySelector('.hint')
 const restartBtm = document.querySelector('.restartBtn')
 

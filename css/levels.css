@@ -15,8 +15,8 @@ main {
 
   display: grid;
   grid-template-rows: 0.75fr 1fr;
-  gap: 20px;
 }
+
 h1 {
   font-size: 50px;
   color: #f2f2f2;

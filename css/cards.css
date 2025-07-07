@@ -1,44 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background-image: url('../images/background1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 main {
+  height: 100vh;
   margin: 10px;
 
   display: grid;
+  grid-template-rows: 65px 55px 80px 1fr;
 }
 
 h1 {
+  font-size: 40px;
+  color: #f2f2f2;
+  text-shadow: 5px 5px 10px #000000;
+
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .flexHome {
   display: flex;
   justify-content: center;
 }
 
-.start {
+.restartBtn,
+.startBtn,
+.homeBtn {
   margin: 10px;
-  height: 40px;
-  width: 80px;
+  padding: 2px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #5c2e7e;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.home {
-  margin: 10px;
-  height: 40px;
-  width: 80px;
+
+.restartBtn:hover,
+.startBtn:hover,
+.homeBtn:hover {
+  background-color: #aa8bc1;
+}
+
+img {
+  height: 30px;
+  width: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bar {
-  margin: 10px;
+  margin: 20px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 0 10px #aa8bc1;
 
   display: flex;
   justify-content: space-around;
 }
 
-.gridCard {
-  margin: 10px;
+.information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hint {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
+  width: 90px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: #aa8bc1;
+}
+.hint:hover {
+  background-color: #d9cde2;
+}
+.gridCard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -47,33 +103,29 @@ h1 {
 .cards {
   display: flex;
   justify-content: center;
-
-  margin: 5px;
+  align-items: center;
 }
 
 .cardsBtn {
   padding: 0;
-  height: 70px;
-  width: 60px;
-}
-
-.restart {
-  display: flex;
-  justify-content: center;
-}
-
-.restartBtn {
-  height: 50px;
-  width: 70px;
+  height: 150px;
+  width: 135px;
+  border-radius: 20px;
+  background-color: #874ccc;
 }
 
 .levelEnd {
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: rgb(135, 0, 0);
+  padding: 25px;
+  background-color: #3f0071;
   text-align: center;
   transform: translate(-50%, -50%);
+  color: white;
+  border-radius: 20px;
+  text-shadow: 5px 5px 10px #000000;
+  box-shadow: 0 0 20px #d9cde2;
 
   z-index: 10;
   opacity: 0;

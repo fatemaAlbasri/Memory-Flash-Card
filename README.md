@@ -12,6 +12,8 @@
 
 Memory flash card game. The game displays a grid of face-down card, each card hiding an image. Player click on two cards at a time to flip them over, trying to find matching pairs.
 
+To play the game: [Memory flash card](https://memoryflashcard.surge.sh/)
+
 ---
 
 ### **_Technologies Used_**
@@ -159,7 +161,7 @@ Memory flash card game. The game displays a grid of face-down card, each card hi
 
 ### **_Credits_**
 
-### CSS
+### CSS:
 
 #### Colors : [Color hunt](https://colorhunt.co/)
 
@@ -167,7 +169,7 @@ Memory flash card game. The game displays a grid of face-down card, each card hi
 
 #### Images : [pinterest](https://www.pinterest.com/) , [Canva](https://www.canva.com/design/DAGr3a-n0RI/ezC4qoxMflG4-4OBfFLQLw/edit) , [freepik](https://www.freepik.com/free-vector/cartoon-galaxy-background_14663513.htm?query=gal%C3%A1xia&epik=dj0yJnU9NkgtR3FwOHZiZzNkNFdoUDlVOVB3WHotQTdNSkhTUXUmcD0wJm49c2lITXE3cnZKem5MRDZuTjh0MnRldyZ0PUFBQUFBR2hxZmpZ)
 
-### JavaScript'DOMContentLoaded'
+### JavaScript:
 
 #### Shuffle an Array : [GeeksforGeeks](https://www.geeksforgeeks.org/javascript/how-to-shuffle-an-array-using-javascript/)
 

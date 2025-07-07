@@ -175,8 +175,8 @@ const endGame = () => {
   else scoreCount += 5
 
   endText.innerHTML = 'Level Completed'
-  endTimer.innerHTML = `Spend time: ${min}:${seconds}`
-  endScore.innerHTML = `Score: ${scoreCount}`
+  endTimer.innerHTML = `Your Time: ${min}:${seconds}`
+  endScore.innerHTML = `Your Score: ${scoreCount}`
   button.innerHTML = 'End Game'
 
   button.style.padding = '12px 30px'

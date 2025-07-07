@@ -63,8 +63,10 @@ const startGame = () => {
   cardsBtn.forEach((card, index) => {
     const img = document.createElement('img')
     img.setAttribute('src', assignedImages[index])
-    img.style.width = '60px'
-    img.style.height = '70px'
+    img.style.width = '135px'
+    img.style.height = '150px'
+    img.style.borderRadius = '20px'
+
     card.appendChild(img)
 
     // Adding the data (attribute) on button to help when fliping cards
@@ -100,8 +102,9 @@ const selectCard = (event) => {
 
   const img = document.createElement('img')
   img.setAttribute('src', assignedImage)
-  img.style.width = '60px'
-  img.style.height = '70px'
+  img.style.width = '135px'
+  img.style.height = '150px'
+  img.style.borderRadius = '20px'
 
   card.appendChild(img)
 
@@ -175,6 +178,16 @@ const endGame = () => {
   endScore.innerHTML = `Score: ${scoreCount}`
   button.innerHTML = 'Next Level'
 
+  button.style.padding = '12px 30px'
+  button.style.fontSize = '20px'
+  button.style.fontWeight = 'bold'
+  button.style.fontFamily = 'Orbitron, sans - serif'
+  button.style.border = 'none'
+  button.style.borderRadius = '30px'
+  button.style.backgroundColor = '#f2f2f2'
+  button.style.color = '#874ccc'
+  button.style.boxShadow = '0 0 10px #874ccc'
+
   div.appendChild(endText)
   div.appendChild(endTimer)
   div.appendChild(endScore)
@@ -204,8 +217,9 @@ const hint = () => {
       if (image) {
         const img = document.createElement('img')
         img.setAttribute('src', image)
-        img.style.width = '60px'
-        img.style.height = '70px'
+        img.style.width = '135px'
+        img.style.height = '150px'
+        img.style.borderRadius = '20px'
         card.appendChild(img)
       }
     }

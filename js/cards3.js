@@ -171,6 +171,14 @@ const endGame = () => {
 
   levelEnd.appendChild(div)
 
+  // unlocked level
+  let unlockedLevel = parseInt(sessionStorage.getItem('unlockedLevel'))
+  let currentLevel = parseInt(sessionStorage.getItem('currentLevel'))
+
+  if (currentLevel === unlockedLevel) {
+    sessionStorage.setItem('unlockedLevel', unlockedLevel)
+  }
+
   button.addEventListener('click', () => {
     window.location.href = '../html/levels.html'
   })

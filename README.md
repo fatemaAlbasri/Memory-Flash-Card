@@ -56,7 +56,7 @@ To play the game: [Memory flash card](https://memoryflashcard.surge.sh/)
 
 - There is a **score**: score increasese based on
   - How quickly you complete the level (based on timer)
-  - passing level
+  - Matching cards
 
 ---
 
@@ -167,7 +167,7 @@ To play the game: [Memory flash card](https://memoryflashcard.surge.sh/)
 
 #### Fonts : [Google Fonts](https://fonts.google.com/selection/embed)
 
-#### Images : [pinterest](https://www.pinterest.com/) , [Canva](https://www.canva.com/design/DAGr3a-n0RI/ezC4qoxMflG4-4OBfFLQLw/edit) , [freepik](https://www.freepik.com/free-vector/cartoon-galaxy-background_14663513.htm?query=gal%C3%A1xia&epik=dj0yJnU9NkgtR3FwOHZiZzNkNFdoUDlVOVB3WHotQTdNSkhTUXUmcD0wJm49c2lITXE3cnZKem5MRDZuTjh0MnRldyZ0PUFBQUFBR2hxZmpZ)
+#### Images : [pinterest](https://www.pinterest.com/) , [Canva](https://www.canva.com/design/DAGr3a-n0RI/ezC4qoxMflG4-4OBfFLQLw/edit) , [freepik](https://www.freepik.com/free-vector/cartoon-galaxy-background_14658064.htm#from_element=cross_selling__vector)
 
 ### JavaScript:
 
